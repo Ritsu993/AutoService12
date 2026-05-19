@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0083b979-d876-4ac2-8ab4-70368cf6f8ae" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/Controller/ApprovalRequestDialogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/Controller/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/Controller/MainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/Controller/PartSelectionDialogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/Controller/RepairOperationDialogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/Controller/StandardWorksReferenceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/Controller/WorkOrderDialogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/MainApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/impl/CarBrandDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/impl/CarDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/impl/ClientDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/impl/EmployeeDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/impl/PartCategoryDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/impl/PartDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/impl/RepairOperationDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/impl/StandardWorkDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/impl/WorkCategoryDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/impl/WorkOrderDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/impl/WorkOrderPartDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/interfaces/BaseDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/interfaces/CarBrandDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/interfaces/CarDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/interfaces/ClientDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/interfaces/EmployeeDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/interfaces/PartCategoryDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/interfaces/PartDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/interfaces/RepairOperationDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/interfaces/StandardWorkDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/interfaces/WorkCategoryDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/interfaces/WorkOrderDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/dao/interfaces/WorkOrderPartDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/entity/core/Car.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/entity/core/Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/entity/core/Employee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/entity/operation/RepairOperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/entity/operation/WorkOrder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/entity/operation/WorkOrderPart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/entity/reference/CarBrand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/entity/reference/Part.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/entity/reference/PartCategory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/entity/reference/StandardWork.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/entity/reference/WorkCategory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/enums/ApprovalStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/enums/ClientType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/enums/EmployeeRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/enums/OperationStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/enums/WorkOrderStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kafpin/autoservice/util/DatabaseConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ru/kafpin/autoservice/approval-request-dialog-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ru/kafpin/autoservice/login-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ru/kafpin/autoservice/main-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ru/kafpin/autoservice/part-selection-dialog-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ru/kafpin/autoservice/repair-operation-dialog-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ru/kafpin/autoservice/standard-works-reference-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ru/kafpin/autoservice/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ru/kafpin/autoservice/work-order-dialog-view.fxml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Ritsu993"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Ritsu993/AutoService12.git",
+    "accountId": "eb3949be-0a23-4f45-bfb6-413d261f2372"
+  }
+}]]></component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+    <option name="showPreview" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="3BocGcaOyfdTkg7NCgkW0mBTREl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.MainApplication.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_directory_selection": "C:/Users/Ritsu/IdeaProjects/AutoService/src/main/java/ru/kafpin/autoservice",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="AutoService" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="AutoService" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0083b979-d876-4ac2-8ab4-70368cf6f8ae" name="Changes" comment="" />
+      <created>1775158772340</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1775158772340</updated>
+    </task>
+    <servers />
+  </component>
+</project>
