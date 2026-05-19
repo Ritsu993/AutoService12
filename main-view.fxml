@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ru.kafpin.autoservice.Controller.MainController"
+            prefHeight="800.0" prefWidth="1200.0">
+
+    <!-- Верхняя панель: заголовок и информация о пользователе -->
+    <top>
+        <VBox spacing="5.0">
+            <padding>
+                <Insets top="10.0" right="15.0" bottom="10.0" left="15.0"/>
+            </padding>
+
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+                <Label text="АРМ Мастера Автосервиса" styleClass="title-label">
+                    <font>
+                        <Font name="System Bold" size="18.0"/>
+                    </font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="lblMasterName" text="Мастер: Иванов И.И."/>
+                <Label fx:id="lblCurrentDate" text="22.04.2026"/>
+                <Button fx:id="btnLogout" text="Выход" onAction="#handleLogout"/>
+            </HBox>
+
+            <!-- Панель быстрого поиска -->
+            <HBox spacing="10.0" alignment="CENTER_LEFT">
+                <Label text="Поиск заказ-наряда:"/>
+                <TextField fx:id="tfSearchOrder" promptText="Номер заказ-наряда или VIN" prefWidth="300.0"/>
+                <Button fx:id="btnSearch" text="Найти" onAction="#handleSearch"/>
+                <Button fx:id="btnClearSearch" text="Очистить" onAction="#handleClearSearch"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <ComboBox fx:id="cbFilterStatus" promptText="Фильтр по статусу"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- Центральная область: список заказ-нарядов и детали -->
+    <center>
+        <SplitPane dividerPositions="0.4" orientation="HORIZONTAL">
+
+            <!-- Левая панель: список заказ-нарядов -->
+            <VBox spacing="5.0">
+                <padding>
+                    <Insets top="10.0" right="10.0" bottom="10.0" left="10.0"/>
+                </padding>
+
+                <Label text="Заказ-наряды" styleClass="section-header">
+                    <font>
+                        <Font name="System Bold" size="14.0"/>
+                    </font>
+                </Label>
+
+                <TableView fx:id="tvWorkOrders" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colOrderNumber" text="№ заказ-наряда" prefWidth="120.0"/>
+                        <TableColumn fx:id="colCarInfo" text="Автомобиль" prefWidth="150.0"/>
+                        <TableColumn fx:id="colClientInfo" text="Клиент" prefWidth="150.0"/>
+                        <TableColumn fx:id="colStatus" text="Статус" prefWidth="120.0"/>
+                        <TableColumn fx:id="colCreatedAt" text="Дата создания" prefWidth="120.0"/>
+                        <TableColumn fx:id="colTotalAmount" text="Сумма" prefWidth="100.0"/>
+                    </columns>
+                </TableView>
+
+                <HBox spacing="10.0" alignment="CENTER">
+                    <Button fx:id="btnRefreshOrders" text="Обновить" onAction="#handleRefreshOrders"/>
+                    <Button fx:id="btnCreateOrder" text="Новый заказ-наряд" onAction="#handleCreateOrder"/>
+                </HBox>
+            </VBox>
+
+            <!-- Правая панель: детали выбранного заказ-наряда -->
+            <TabPane fx:id="tpOrderDetails" tabClosingPolicy="UNAVAILABLE">
+
+                <!-- Вкладка: Информация о заказ-наряде -->
+                <Tab text="Информация">
+                    <ScrollPane fitToWidth="true">
+                        <VBox spacing="15.0">
+                            <padding>
+                                <Insets top="15.0" right="15.0" bottom="15.0" left="15.0"/>
+                            </padding>
+
+                            <!-- Карточка заказ-наряда -->
+                            <GridPane vgap="8.0" hgap="15.0">
+                                <columnConstraints>
+                                    <ColumnConstraints minWidth="120.0" prefWidth="150.0"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                </columnConstraints>
+
+                                <Label text="Номер:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="label-bold"/>
+                                <Label fx:id="lblOrderNumber" text="-" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                <Label text="Статус:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="label-bold"/>
+                                <HBox GridPane.rowIndex="1" GridPane.columnIndex="1" spacing="10.0" alignment="CENTER_LEFT">
+                                    <Label fx:id="lblOrderStatus" text="-"/>
+                                    <ComboBox fx:id="cbChangeStatus" promptText="Изменить статус"/>
+                                    <Button fx:id="btnUpdateStatus" text="Применить" onAction="#handleUpdateStatus"/>
+                                </HBox>
+
+                                <Label text="Дата создания:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="label-bold"/>
+                                <Label fx:id="lblOrderCreatedAt" text="-" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                                <Label text="Назначенный мастер:" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="label-bold"/>
+                                <Label fx:id="lblAssignedMaster" text="-" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                                <Label text="Менеджер:" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="label-bold"/>
+                                <Label fx:id="lblManager" text="-" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                                <Label text="Описание проблемы:" GridPane.rowIndex="5" GridPane.columnIndex="0" styleClass="label-bold"/>
+                                <TextArea fx:id="taOrderDescription" editable="false" wrapText="true"
+                                          prefRowCount="3" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                            </GridPane>
+
+                            <Separator/>
+
+                            <!-- Финансовая информация -->
+                            <GridPane vgap="8.0" hgap="15.0">
+                                <columnConstraints>
+                                    <ColumnConstraints minWidth="120.0" prefWidth="150.0"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                </columnConstraints>
+
+                                <Label text="Нормативные часы:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="label-bold"/>
+                                <Label fx:id="lblNormativeHours" text="-" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                <Label text="Фактические часы:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="label-bold"/>
+                                <TextField fx:id="tfActualHours" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="100.0"/>
+
+                                <Label text="Стоимость работ:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="label-bold"/>
+                                <Label fx:id="lblWorkCost" text="-" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                                <Label text="Стоимость запчастей:" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="label-bold"/>
+                                <Label fx:id="lblPartsCost" text="-" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                                <Label text="Итоговая сумма:" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="label-bold"/>
+                                <Label fx:id="lblTotalAmount" text="-" styleClass="total-amount"
+                                       GridPane.rowIndex="4" GridPane.columnIndex="1">
+                                    <font>
+                                        <Font name="System Bold" size="14.0"/>
+                                    </font>
+                                </Label>
+                            </GridPane>
+
+                            <HBox spacing="10.0" alignment="CENTER_RIGHT">
+                                <Button fx:id="btnSaveOrderInfo" text="Сохранить изменения" onAction="#handleSaveOrderInfo"/>
+                            </HBox>
+                        </VBox>
+                    </ScrollPane>
+                </Tab>
+
+                <!-- Вкладка: Ремонтные операции -->
+                <Tab text="Операции">
+                    <VBox spacing="10.0">
+                        <padding>
+                            <Insets top="10.0" right="10.0" bottom="10.0" left="10.0"/>
+                        </padding>
+
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                            <Label text="Ремонтные операции">
+                                <font>
+                                    <Font name="System Bold" size="14.0"/>
+                                </font>
+                            </Label>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Button fx:id="btnAddOperation" text="Добавить операцию" onAction="#handleAddOperation"/>
+                            <Button fx:id="btnAddFromStandard" text="Из справочника" onAction="#handleAddFromStandard"/>
+                        </HBox>
+
+                        <TableView fx:id="tvRepairOperations" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="colOpName" text="Наименование" prefWidth="200.0"/>
+                                <TableColumn fx:id="colOpStatus" text="Статус" prefWidth="100.0"/>
+                                <TableColumn fx:id="colOpNormHours" text="Норм. часы" prefWidth="80.0"/>
+                                <TableColumn fx:id="colOpActualHours" text="Факт. часы" prefWidth="80.0"/>
+                                <TableColumn fx:id="colOpCost" text="Стоимость" prefWidth="90.0"/>
+                                <TableColumn fx:id="colOpStarted" text="Начало" prefWidth="120.0"/>
+                                <TableColumn fx:id="colOpCompleted" text="Завершение" prefWidth="120.0"/>
+                                <TableColumn fx:id="colOpActions" text="Действия" prefWidth="120.0"/>
+                            </columns>
+                        </TableView>
+
+                        <!-- Панель управления операцией -->
+                        <TitledPane fx:id="tpOperationControl" text="Управление операцией" expanded="false">
+                            <GridPane vgap="8.0" hgap="15.0">
+                                <columnConstraints>
+                                    <ColumnConstraints minWidth="100.0" prefWidth="120.0"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                    <ColumnConstraints minWidth="100.0" prefWidth="120.0"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                </columnConstraints>
+
+                                <Label text="Операция:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                <Label fx:id="lblSelectedOperation" text="-" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
+
+                                <Label text="Начать:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                <Button fx:id="btnStartOperation" text="Старт" onAction="#handleStartOperation"
+                                        GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                                <Label text="Поставить на паузу:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                                <HBox GridPane.rowIndex="1" GridPane.columnIndex="3" spacing="5.0">
+                                    <Button fx:id="btnPauseOperation" text="Пауза" onAction="#handlePauseOperation"/>
+                                    <TextField fx:id="tfPauseReason" promptText="Причина паузы" prefWidth="150.0"/>
+                                </HBox>
+
+                                <Label text="Завершить:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                <HBox GridPane.rowIndex="2" GridPane.columnIndex="1" spacing="5.0">
+                                    <TextField fx:id="tfCompletedHours" promptText="Факт. часы" prefWidth="80.0"/>
+                                    <Button fx:id="btnCompleteOperation" text="Завершить" onAction="#handleCompleteOperation"/>
+                                </HBox>
+
+                                <Label text="Доп. работа:" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                                <CheckBox fx:id="chkIsAdditional" text="Требует согласования"
+                                          GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+
+                                <Label text="Комментарий мастера:" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.columnSpan="2"/>
+                                <TextArea fx:id="taMasterComments" wrapText="true" prefRowCount="2"
+                                          GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.columnSpan="4"/>
+
+                                <HBox spacing="10.0" alignment="CENTER_RIGHT" GridPane.rowIndex="5" GridPane.columnIndex="0" GridPane.columnSpan="4">
+                                    <Button fx:id="btnSaveOperation" text="Сохранить" onAction="#handleSaveOperation"/>
+                                    <Button fx:id="btnCancelOperation" text="Отменить операцию" onAction="#handleCancelOperation"/>
+                                </HBox>
+                            </GridPane>
+                        </TitledPane>
+                    </VBox>
+                </Tab>
+
+                <!-- Вкладка: Запчасти и материалы -->
+                <Tab text="Запчасти">
+                    <VBox spacing="10.0">
+                        <padding>
+                            <Insets top="10.0" right="10.0" bottom="10.0" left="10.0"/>
+                        </padding>
+
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                            <Label text="Использованные запчасти">
+                                <font>
+                                    <Font name="System Bold" size="14.0"/>
+                                </font>
+                            </Label>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Button fx:id="btnRequestPart" text="Запросить запчасть" onAction="#handleRequestPart"/>
+                            <Button fx:id="btnWriteOffPart" text="Списать со склада" onAction="#handleWriteOffPart"/>
+                        </HBox>
+
+                        <TableView fx:id="tvWorkOrderParts" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="colPartArticle" text="Артикул" prefWidth="100.0"/>
+                                <TableColumn fx:id="colPartName" text="Наименование" prefWidth="200.0"/>
+                                <TableColumn fx:id="colPartQuantity" text="Кол-во" prefWidth="60.0"/>
+                                <TableColumn fx:id="colPartUnitPrice" text="Цена" prefWidth="90.0"/>
+                                <TableColumn fx:id="colPartTotalPrice" text="Сумма" prefWidth="90.0"/>
+                                <TableColumn fx:id="colPartStatus" text="Статус" prefWidth="100.0"/>
+                                <TableColumn fx:id="colPartWrittenOff" text="Списано" prefWidth="120.0"/>
+                            </columns>
+                        </TableView>
+
+                        <!-- Форма списания запчасти -->
+                        <TitledPane fx:id="tpWriteOffPart" text="Списание запчасти" expanded="false">
+                            <GridPane vgap="8.0" hgap="15.0">
+                                <columnConstraints>
+                                    <ColumnConstraints minWidth="100.0" prefWidth="120.0"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                </columnConstraints>
+
+                                <Label text="Запчасть:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                <ComboBox fx:id="cbAvailableParts" prefWidth="300.0" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                <Label text="Количество:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                <Spinner fx:id="spPartQuantity" prefWidth="100.0" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                                <Label text="Цена на момент списания:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                <Label fx:id="lblCurrentPartPrice" text="-" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                                <HBox spacing="10.0" alignment="CENTER_RIGHT" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.columnSpan="2">
+                                    <Button fx:id="btnConfirmWriteOff" text="Подтвердить списание" onAction="#handleConfirmWriteOff"/>
+                                    <Button fx:id="btnCancelWriteOff" text="Отмена" onAction="#handleCancelWriteOff"/>
+                                </HBox>
+                            </GridPane>
+                        </TitledPane>
+                    </VBox>
+                </Tab>
+
+                <!-- Вкладка: Информация об автомобиле -->
+                <Tab text="Автомобиль">
+                    <ScrollPane fitToWidth="true">
+                        <VBox spacing="15.0">
+                            <padding>
+                                <Insets top="15.0" right="15.0" bottom="15.0" left="15.0"/>
+                            </padding>
+
+                            <GridPane vgap="8.0" hgap="15.0">
+                                <columnConstraints>
+                                    <ColumnConstraints minWidth="120.0" prefWidth="150.0"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                    <ColumnConstraints minWidth="120.0" prefWidth="150.0"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                </columnConstraints>
+
+                                <Label text="Марка/Модель:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="label-bold"/>
+                                <Label fx:id="lblCarBrand" text="-" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                <Label text="VIN:" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="label-bold"/>
+                                <Label fx:id="lblCarVin" text="-" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                                <Label text="Гос. номер:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="label-bold"/>
+                                <Label fx:id="lblCarLicensePlate" text="-" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                                <Label text="Год выпуска:" GridPane.rowIndex="1" GridPane.columnIndex="2" styleClass="label-bold"/>
+                                <Label fx:id="lblCarYear" text="-" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+                                <Label text="Цвет:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="label-bold"/>
+                                <Label fx:id="lblCarColor" text="-" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                                <Label text="Пробег:" GridPane.rowIndex="2" GridPane.columnIndex="2" styleClass="label-bold"/>
+                                <Label fx:id="lblCarMileage" text="-" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+                            </GridPane>
+
+                            <Separator/>
+
+                            <Label text="История обслуживания" styleClass="section-header">
+                                <font>
+                                    <Font name="System Bold" size="14.0"/>
+                                </font>
+                            </Label>
+
+                            <TableView fx:id="tvCarHistory" prefHeight="200.0">
+                                <columns>
+                                    <TableColumn fx:id="colHistOrderNumber" text="№ заказ-наряда" prefWidth="120.0"/>
+                                    <TableColumn fx:id="colHistDate" text="Дата" prefWidth="100.0"/>
+                                    <TableColumn fx:id="colHistDescription" text="Описание работ" prefWidth="300.0"/>
+                                    <TableColumn fx:id="colHistTotal" text="Сумма" prefWidth="100.0"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </ScrollPane>
+                </Tab>
+
+                <!-- Вкладка: Информация о клиенте -->
+                <Tab text="Клиент">
+                    <ScrollPane fitToWidth="true">
+                        <VBox spacing="15.0">
+                            <padding>
+                                <Insets top="15.0" right="15.0" bottom="15.0" left="15.0"/>
+                            </padding>
+
+                            <GridPane vgap="8.0" hgap="15.0">
+                                <columnConstraints>
+                                    <ColumnConstraints minWidth="120.0" prefWidth="150.0"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                </columnConstraints>
+
+                                <Label text="Тип клиента:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="label-bold"/>
+                                <Label fx:id="lblClientType" text="-" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                                <Label text="ФИО/Компания:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="label-bold"/>
+                                <Label fx:id="lblClientName" text="-" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                                <Label text="Телефон:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="label-bold"/>
+                                <Label fx:id="lblClientPhone" text="-" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                                <Label text="Email:" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="label-bold"/>
+                                <Label fx:id="lblClientEmail" text="-" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                                <Label text="Адрес:" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="label-bold"/>
+                                <Label fx:id="lblClientAddress" text="-" GridPane.rowIndex="4" GridPane.columnIndex="1" wrapText="true"/>
+
+                                <Label text="ИНН:" GridPane.rowIndex="5" GridPane.columnIndex="0" styleClass="label-bold"/>
+                                <Label fx:id="lblClientInn" text="-" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                            </GridPane>
+                        </VBox>
+                    </ScrollPane>
+                </Tab>
+
+            </TabPane>
+        </SplitPane>
+    </center>
+
+    <!-- Нижняя панель: статусная строка -->
+    <bottom>
+        <HBox spacing="10.0" styleClass="status-bar">
+            <padding>
+                <Insets top="5.0" right="10.0" bottom="5.0" left="10.0"/>
+            </padding>
+            <Label fx:id="lblStatusMessage" text="Готово"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <ProgressBar fx:id="pbProgress" prefWidth="150.0" visible="false"/>
+            <Label fx:id="lblRecordCount" text="Записей: 0"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

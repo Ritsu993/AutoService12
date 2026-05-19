@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<DialogPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kafpin.autoservice.Controller.RepairOperationDialogController" minHeight="-Infinity" maxHeight="-Infinity" prefHeight="400.0">
+
+    <header>
+        <Label styleClass="dialog-header">
+            <text>Ремонтная операция</text>
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+            <padding>
+                <Insets bottom="10.0" left="15.0" right="15.0" top="15.0" />
+            </padding>
+        </Label>
+    </header>
+
+    <content>
+        <VBox spacing="15.0">
+            <padding>
+                <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+            </padding>
+
+            <!-- Выбор из справочника или ручной ввод -->
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+                <RadioButton fx:id="rbFromStandard" selected="true" text="Из справочника">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="tgOperationSource" />
+                    </toggleGroup>
+                </RadioButton>
+                <RadioButton fx:id="rbManual" text="Ручной ввод" toggleGroup="$tgOperationSource" />
+            </HBox>
+
+            <!-- Панель выбора из справочника -->
+            <VBox fx:id="vbStandardSelection" spacing="10.0">
+                <Label text="Типовая работа:" />
+                <ComboBox fx:id="cbStandardWork" prefWidth="400.0" promptText="Выберите типовую работу" />
+
+                <GridPane hgap="15.0" vgap="8.0">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="120.0" prefWidth="140.0" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                    </columnConstraints>
+
+                    <Label text="Код работы:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <Label fx:id="lblWorkCode" text="-" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                    <Label text="Нормативные часы:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <Label fx:id="lblStdNormHours" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                    <Label text="Базовая стоимость:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <Label fx:id="lblStdBaseCost" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+                </GridPane>
+            </VBox>
+
+            <!-- Панель ручного ввода -->
+            <VBox fx:id="vbManualInput" managed="false" spacing="10.0" visible="false">
+                <GridPane hgap="15.0" vgap="8.0">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="120.0" prefWidth="140.0" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                    </columnConstraints>
+
+                    <Label text="Наименование:*" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <TextField fx:id="tfOperationName" promptText="Наименование операции" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                    <Label text="Описание:" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                    <TextArea fx:id="taOperationDescription" prefRowCount="2" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                    <Label text="Нормативные часы:*" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <TextField fx:id="tfManualNormHours" promptText="0.00" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                    <Label text="Стоимость:*" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                    <TextField fx:id="tfManualCost" promptText="0.00" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+                </GridPane>
+            </VBox>
+
+            <Separator />
+
+            <!-- Общие поля -->
+            <GridPane hgap="15.0" vgap="8.0">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="120.0" prefWidth="140.0" />
+                    <ColumnConstraints hgrow="ALWAYS" />
+                </columnConstraints>
+
+                <Label text="Дополнительная работа:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <CheckBox fx:id="chkIsAdditional" text="Требует согласования клиента" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <Label text="Комментарий:" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                <TextArea fx:id="taOperationComment" prefRowCount="2" promptText="Комментарий мастера" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+            </GridPane>
+
+        </VBox>
+    </content>
+
+    <ButtonType fx:constant="OK" />
+    <ButtonType fx:constant="CANCEL" />
+</DialogPane>

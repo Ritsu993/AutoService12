@@ -1,0 +1,158 @@
+/* Основные стили приложения */
+.root {
+    -fx-font-family: "Segoe UI", "System", sans-serif;
+    -fx-font-size: 12px;
+}
+
+/* Заголовки */
+.title-label {
+    -fx-text-fill: #2c3e50;
+}
+
+.section-header {
+    -fx-text-fill: #34495e;
+    -fx-padding: 5 0 5 0;
+}
+
+.dialog-header {
+    -fx-text-fill: #2c3e50;
+}
+
+/* Статусная строка */
+.status-bar {
+    -fx-background-color: #ecf0f1;
+    -fx-border-color: #bdc3c7;
+    -fx-border-width: 1 0 0 0;
+}
+
+/* Таблицы */
+.table-view {
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 3px;
+}
+
+.table-view .column-header {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+}
+
+/* Кнопки */
+.button {
+    -fx-background-radius: 3px;
+    -fx-padding: 5 15 5 15;
+}
+
+.button:hover {
+    -fx-opacity: 0.9;
+}
+
+/* Основные кнопки действий */
+.button-primary {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+.button-success {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+}
+
+.button-danger {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+}
+
+.button-warning {
+    -fx-background-color: #f39c12;
+    -fx-text-fill: white;
+}
+
+/* Поля ввода */
+.text-field, .text-area, .combo-box {
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+}
+
+.text-field:focused, .text-area:focused, .combo-box:focused {
+    -fx-border-color: #3498db;
+}
+
+/* Статусы заказ-нарядов */
+.status-new {
+    -fx-text-fill: #7f8c8d;
+}
+
+.status-in-progress {
+    -fx-text-fill: #3498db;
+    -fx-font-weight: bold;
+}
+
+.status-waiting-approval {
+    -fx-text-fill: #f39c12;
+    -fx-font-weight: bold;
+}
+
+.status-paused {
+    -fx-text-fill: #e67e22;
+}
+
+.status-completed {
+    -fx-text-fill: #27ae60;
+}
+
+.status-closed {
+    -fx-text-fill: #95a5a6;
+}
+
+.status-cancelled {
+    -fx-text-fill: #e74c3c;
+    -fx-strikethrough: true;
+}
+
+/* Суммы */
+.total-amount {
+    -fx-text-fill: #27ae60;
+    -fx-font-weight: bold;
+}
+
+/* Ошибки */
+.error-message {
+    -fx-text-fill: #e74c3c;
+    -fx-font-size: 11px;
+}
+
+/* Логин */
+.login-container {
+    -fx-background-color: #f5f6fa;
+}
+
+.app-title {
+    -fx-text-fill: #2c3e50;
+}
+
+/* Разделители */
+.separator {
+    -fx-padding: 10 0 10 0;
+}
+
+/* Метки */
+.label-bold {
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* TitledPane */
+.titled-pane {
+    -fx-text-fill: #2c3e50;
+}
+
+.titled-pane > .title {
+    -fx-background-color: #ecf0f1;
+    -fx-font-weight: bold;
+}

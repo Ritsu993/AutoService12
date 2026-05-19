@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ru.kafpin.autoservice.Controller.StandardWorksReferenceController"
+            prefWidth="800.0" prefHeight="600.0">
+
+    <top>
+        <VBox spacing="10.0">
+            <padding>
+                <Insets top="10.0" right="10.0" bottom="10.0" left="10.0"/>
+            </padding>
+
+            <HBox spacing="10.0" alignment="CENTER_LEFT">
+                <Label text="Справочник типовых работ"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="tfSearchWork" promptText="Поиск" prefWidth="200.0"/>
+                <ComboBox fx:id="cbWorkCategory" promptText="Категория"/>
+                <Button fx:id="btnAddWork" text="Добавить" onAction="#handleAddWork"/>
+                <Button fx:id="btnEditWork" text="Изменить" onAction="#handleEditWork"/>
+                <Button fx:id="btnDeleteWork" text="Удалить" onAction="#handleDeleteWork"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="tvStandardWorks">
+            <columns>
+                <TableColumn fx:id="colWorkCode" text="Код" prefWidth="80.0"/>
+                <TableColumn fx:id="colWorkName" text="Наименование" prefWidth="250.0"/>
+                <TableColumn fx:id="colWorkCategory" text="Категория" prefWidth="120.0"/>
+                <TableColumn fx:id="colWorkNormHours" text="Норм. часы" prefWidth="80.0"/>
+                <TableColumn fx:id="colWorkBaseCost" text="Базовая стоимость" prefWidth="120.0"/>
+                <TableColumn fx:id="colWorkActive" text="Активна" prefWidth="70.0"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <HBox spacing="10.0" alignment="CENTER_RIGHT">
+            <padding>
+                <Insets top="5.0" right="10.0" bottom="5.0" left="10.0"/>
+            </padding>
+            <Button fx:id="btnClose" text="Закрыть" onAction="#handleClose"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

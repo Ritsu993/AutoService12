@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ru.kafpin.autoservice.Controller.LoginController"
+      alignment="CENTER" spacing="20.0" prefWidth="400.0" prefHeight="350.0"
+      styleClass="login-container">
+
+    <padding>
+        <Insets top="30.0" right="40.0" bottom="30.0" left="40.0"/>
+    </padding>
+
+    <Label text="АРМ Мастера Автосервиса" styleClass="app-title">
+        <font>
+            <Font name="System Bold" size="18.0"/>
+        </font>
+    </Label>
+
+    <Label text="Авторизация" styleClass="login-title">
+        <font>
+            <Font name="System Bold" size="14.0"/>
+        </font>
+    </Label>
+
+    <GridPane vgap="12.0" hgap="10.0" alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints minWidth="80.0"/>
+            <ColumnConstraints minWidth="200.0" prefWidth="250.0"/>
+        </columnConstraints>
+
+        <Label text="Логин:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="tfLogin" GridPane.rowIndex="0" GridPane.columnIndex="1" promptText="Введите логин"/>
+
+        <Label text="Пароль:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <PasswordField fx:id="pfPassword" GridPane.rowIndex="1" GridPane.columnIndex="1" promptText="Введите пароль"/>
+    </GridPane>
+
+    <Label fx:id="lblErrorMessage" text="" styleClass="error-message" textFill="RED" wrapText="true"/>
+
+    <Button fx:id="btnLogin" text="Войти" onAction="#handleLogin" prefWidth="150.0" defaultButton="true"/>
+
+    <Label text="© 2026 Автосервис" styleClass="copyright"/>
+
+</VBox>

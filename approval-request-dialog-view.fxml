@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<DialogPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kafpin.autoservice.Controller.ApprovalRequestDialogController" minHeight="-Infinity" maxHeight="-Infinity" prefHeight="400.0">
+
+    <header>
+        <Label text="Запрос на согласование дополнительных работ">
+            <padding>
+                <Insets bottom="10.0" left="15.0" right="15.0" top="15.0" />
+            </padding>
+        </Label>
+    </header>
+
+    <content>
+        <VBox spacing="15.0">
+            <padding>
+                <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+            </padding>
+
+            <Label styleClass="label-bold" text="Заказ-наряд:" />
+            <Label fx:id="lblApprovalOrderNumber" text="-" />
+
+            <Label styleClass="label-bold" text="Операции, требующие согласования:" />
+
+            <ListView fx:id="lvAdditionalOperations" prefHeight="150.0" />
+
+            <GridPane hgap="15.0" vgap="8.0">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="100.0" prefWidth="120.0" />
+                    <ColumnConstraints hgrow="ALWAYS" />
+                </columnConstraints>
+
+                <Label text="Доп. стоимость работ:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label fx:id="lblAdditionalWorkCost" text="-" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <Label text="Доп. стоимость запчастей:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Label fx:id="lblAdditionalPartsCost" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <Label styleClass="label-bold" text="Итого дополнительно:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <Label fx:id="lblTotalAdditional" styleClass="total-amount" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+            </GridPane>
+
+                <Label styleClass="label-bold" text="Комментарий для клиента:" />
+            <TextArea fx:id="taClientComment" prefRowCount="3" promptText="Объясните необходимость дополнительных работ" wrapText="true" />
+
+        </VBox>
+    </content>
+
+    <buttonTypes>
+        <ButtonType fx:id="btnSendRequest" buttonData="OK_DONE" />
+        <ButtonType fx:constant="CANCEL" />
+    </buttonTypes>
+
+</DialogPane>

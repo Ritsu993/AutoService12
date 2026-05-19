@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<DialogPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ru.kafpin.autoservice.Controller.WorkOrderDialogController"
+            minHeight="-Infinity" maxHeight="-Infinity" prefHeight="400.0">
+
+    <header>
+        <Label text="Заказ-наряд" styleClass="dialog-header">
+            <font>
+                <Font name="System Bold" size="16.0"/>
+            </font>
+            <padding>
+                <Insets top="15.0" right="15.0" bottom="10.0" left="15.0"/>
+            </padding>
+        </Label>
+    </header>
+
+    <content>
+        <GridPane vgap="10.0" hgap="15.0">
+            <padding>
+                <Insets top="10.0" right="15.0" bottom="10.0" left="15.0"/>
+            </padding>
+
+            <columnConstraints>
+                <ColumnConstraints minWidth="120.0" prefWidth="140.0"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <!-- Номер заказ-наряда (генерируется автоматически) -->
+            <Label text="Номер:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfOrderNumber" GridPane.rowIndex="0" GridPane.columnIndex="1" editable="false" promptText="Будет сгенерирован автоматически"/>
+
+            <!-- Автомобиль -->
+            <Label text="Автомобиль:*" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <HBox GridPane.rowIndex="1" GridPane.columnIndex="1" spacing="5.0">
+                <ComboBox fx:id="cbCar" HBox.hgrow="ALWAYS" promptText="Выберите автомобиль"/>
+                <Button fx:id="btnAddCar" text="+" onAction="#handleAddCar" prefWidth="30.0"/>
+            </HBox>
+
+            <!-- Клиент (заполняется автоматически при выборе авто) -->
+            <Label text="Клиент:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <Label fx:id="lblClientInfo" text="-" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <!-- Назначенный мастер -->
+            <Label text="Мастер:*" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="cbMaster" GridPane.rowIndex="3" GridPane.columnIndex="1" promptText="Выберите мастера"/>
+
+            <!-- Статус -->
+            <Label text="Статус:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="cbStatus" GridPane.rowIndex="4" GridPane.columnIndex="1" promptText="new"/>
+
+            <!-- Описание проблемы -->
+            <Label text="Описание проблемы:*" GridPane.rowIndex="5" GridPane.columnIndex="0" GridPane.valignment="TOP"/>
+            <TextArea fx:id="taDescription" GridPane.rowIndex="5" GridPane.columnIndex="1"
+                      wrapText="true" prefRowCount="4" promptText="Опишите проблему клиента"/>
+
+            <!-- Предварительная стоимость -->
+            <Label text="Предв. норм. часы:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfNormativeHours" GridPane.rowIndex="6" GridPane.columnIndex="1" promptText="0.00"/>
+
+            <Label text="Примечания:" GridPane.rowIndex="7" GridPane.columnIndex="0" GridPane.valignment="TOP"/>
+            <TextArea fx:id="taNotes" GridPane.rowIndex="7" GridPane.columnIndex="1"
+                      wrapText="true" prefRowCount="2" promptText="Дополнительные примечания"/>
+
+        </GridPane>
+    </content>
+
+    <buttonTypes>
+        <ButtonType fx:constant="OK"/>
+        <ButtonType fx:constant="CANCEL"/>
+    </buttonTypes>
+
+</DialogPane>
